@@ -58,6 +58,213 @@ runtime = [
     "watchfiles==0.21.*",
 ]
 
+[tool.uv]
+default-groups = [
+    "dev",
+    "runtime",
+]
+
+[tool.hatch.build.targets.sdist]
+include = ["adobe_vipm"]
+
+[tool.hatch.build.targets.wheel]
+include = ["adobe_vipm"]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+pythonpath = "."
+addopts = "--cov=adobe_vipm --cov-report=term-missing --cov-report=xml  --import-mode=importlib"
+DJANGO_SETTINGS_MODULE = "tests.django.settings"
+log_cli = false
+filterwarnings = [
+    "ignore:Support for class-based `config` is deprecated:DeprecationWarning",
+]
+
+[tool.coverage.run]
+relative_files = true
+branch = true
+omit = [
+  "__init__.py",
+]
+
+[tool.flake8]
+allowed-domain-names = ["result"]
+aaa_act_block_style = "large"
+doctests = true
+extend-ignore = ["WPS226"]
+extend-exclude = [
+  ".coverage",
+  ".github",
+  ".idea",
+  ".mypy_cache",
+  ".pytest_cache",
+  ".ruff_cache",
+  "uv.lock",
+  ".venv"
+]
+format = "wemake"
+max-imports = 17
+max-line-length = 100
+select = ["AAA", "E999", "WPS"]
+show-source = true
+statistics = false
+# To be fixed and removed
+per-file-ignores = [
+  "tests/**/*.py: WPS",
+  "tests/*.py: WPS",
+  "adobe_vipm/flows/pipeline.py: WPS",
+  "adobe_vipm/adobe/validation.py: WPS202",
+  "adobe_vipm/adobe/utils.py: WPS100",
+  "adobe_vipm/adobe/mixins/order.py: WPS211 WPS210 WPS214 WPS204 WPS201",
+  "adobe_vipm/adobe/mixins/customer.py: WPS114 WPS210 WPS214",
+  "adobe_vipm/adobe/errors.py: WPS202",
+  "adobe_vipm/adobe/constants.py: WPS114",
+  "adobe_vipm/adobe/config.py: WPS122 WPS121 WPS214",
+  "adobe_vipm/adobe/client.py: WPS122 WPS121 WPS215",
+  "adobe_vipm/airtable/models.py: WPS110 WPS114 WPS118 WPS202 WPS204 WPS210 WPS229 WPS235 WPS347 WPS426 WPS431 WPS432 WPS441 WPS602",
+  "adobe_vipm/flows/fulfillment/change.py: WPS210 WPS229 WPS231 WPS235",
+  "adobe_vipm/flows/fulfillment/configuration.py: WPS229 WPS338 WPS235",
+  "adobe_vipm/flows/fulfillment/purchase.py: WPS110 WPS114 WPS203 WPS204 WPS229 WPS231 WPS235 WPS338",
+  "adobe_vipm/flows/fulfillment/shared.py: WPS110 WPS201 WPS202 WPS203 WPS204 WPS210 WPS213 WPS220 WPS221 WPS229 WPS231 WPS235 WPS237 WPS336 WPS426 WPS441 WPS504",
+  "adobe_vipm/flows/fulfillment/termination.py: WPS210 WPS220 WPS229 WPS231 WPS235",
+  "adobe_vipm/flows/fulfillment/transfer.py: WPS110 WPS201 WPS202 WPS203 WPS204 WPS210 WPS211 WPS221 WPS231 WPS235 WPS237 WPS432 WPS479 WPS480",
+  "adobe_vipm/flows/fulfillment/__init__.py: WPS412",
+  "adobe_vipm/flows/utils/customer.py: WPS110 WPS202",
+  "adobe_vipm/flows/utils/date.py: WPS110 WPS221",
+  "adobe_vipm/flows/utils/deployment.py: WPS110",
+  "adobe_vipm/flows/utils/formatting.py: WPS237 WPS505",
+  "adobe_vipm/flows/utils/notification.py: WPS336 WPS519",
+  "adobe_vipm/flows/utils/order.py: WPS110 WPS202 WPS430",
+  "adobe_vipm/flows/utils/parameter.py: WPS110 WPS202 WPS210",
+  "adobe_vipm/flows/utils/subscription.py: WPS110 WPS202 WPS221 WPS237 WPS349 WPS426 WPS432 WPS504",
+  "adobe_vipm/flows/utils/three_yc.py: WPS110 WPS114",
+  "adobe_vipm/flows/validation/change.py: WPS210 WPS231 WPS327 WPS338 WPS432",
+  "adobe_vipm/flows/validation/purchase.py: WPS110 WPS114 WPS203 WPS210 WPS220 WPS231 WPS235 WPS338",
+  "adobe_vipm/flows/validation/shared.py: WPS110 WPS210 WPS221 WPS229 WPS441",
+  "adobe_vipm/flows/validation/transfer.py: WPS110 WPS202 WPS203 WPS204 WPS210 WPS211 WPS221 WPS229 WPS235 WPS432",
+  "adobe_vipm/flows/validation/__init__.py: WPS412",
+  "adobe_vipm/flows/benefits.py: WPS110 WPS114 WPS204 WPS210 WPS229 WPS231 WPS232 WPS504",
+  "adobe_vipm/flows/constants.py: WPS110 WPS114 WPS118 WPS235 WPS407",
+  "adobe_vipm/flows/context.py: WPS221 WPS237",
+  "adobe_vipm/flows/errors.py: WPS110 WPS202 WPS328 WPS430 WPS505",
+  "adobe_vipm/flows/global_customer.py: WPS110 WPS202 WPS210 WPS211 WPS212 WPS213 WPS229 WPS231 WPS232 WPS235 WPS237 WPS504",
+  "adobe_vipm/flows/helpers.py: WPS100 WPS110 WPS114 WPS118 WPS201 WPS202 WPS203 WPS204 WPS210 WPS212 WPS213 WPS214 WPS219 WPS221 WPS231 WPS235 WPS338 WPS414 WPS504",
+  "adobe_vipm/flows/migration.py: WPS202 WPS204 WPS210 WPS213 WPS231 WPS237 WPS407 WPS432",
+  "adobe_vipm/flows/mpt.py: WPS114 WPS118 WPS210 WPS237 WPS504",
+  "adobe_vipm/flows/nav.py: WPS110 WPS210 WPS221 WPS229 WPS231 WPS237 WPS420 WPS432",
+  "adobe_vipm/flows/sync/agreement.py: WPS110 WPS114 WPS201 WPS202 WPS204 WPS210 WPS211 WPS213 WPS221 WPS229 WPS231 WPS235 WPS237 WPS335 WPS432 WPS504 WPS505",
+  "adobe_vipm/flows/sync/subscription.py: WPS211 WPS210 WPS231 WPS229 WPS211",
+  "adobe_vipm/flows/sync/util.py: WPS100 WPS453",
+  "adobe_vipm/management/commands/check_gc_agreement_deployments.py: WPS110",
+  "adobe_vipm/management/commands/base.py: WPS110",
+  "adobe_vipm/management/commands/check_running_transfers.py: WPS110",
+  "adobe_vipm/management/commands/create_resellers.py: WPS110 WPS204 WPS210 WPS213 WPS214 WPS221 WPS231 WPS235 WPS237 WPS407 WPS504",
+  "adobe_vipm/management/commands/process_3yc.py: WPS110 WPS114",
+  "adobe_vipm/management/commands/process_transfers.py: WPS110",
+  "adobe_vipm/management/commands/sync_3yc_enrollments.py: WPS110 WPS114",
+  "adobe_vipm/management/commands/sync_agreements.py: WPS110 WPS204",
+  "adobe_vipm/notifications.py: WPS110 WPS202 WPS211 WPS213",
+  "adobe_vipm/utils.py: WPS100 WPS110 WPS114",
+  "adobe_vipm/management/commands/sync_3yc_enrol.py: WPS114",
+]
+
+[tool.ruff]
+# Ruff config: https://docs.astral.sh/ruff/settings
+preview = true
+target-version = "py312"
+output-format = "full"
+line-length = 100
+
+[tool.ruff.format]
+quote-style = "double"
+# This is only required because we have invalid on-purpose code in docstrings:
+docstring-code-format = false
+
+[tool.ruff.lint]
+select = [
+  "A",    # flake8-builtins
+  "B",    # flake8-bugbear
+  "C4",   # flake8-comprehensions
+  "C90",  # maccabe
+  "COM",  # flake8-commas
+  "D",    # pydocstyle
+  "DTZ",  # flake8-datetimez
+  "E",    # pycodestyle
+  "ERA",  # flake8-eradicate
+  "EXE",  # flake8-executable
+  "F",    # pyflakes
+  "FBT",  # flake8-boolean-trap
+  "FLY",  # pyflint
+  "FURB", # refurb
+  "G",    # flake8-logging-format
+  "I",    # isort
+  "ICN",  # flake8-import-conventions
+  "ISC",  # flake8-implicit-str-concat
+  "LOG",  # flake8-logging
+  "N",    # pep8-naming
+  "PERF", # perflint
+  "PIE",  # flake8-pie
+  "PL",   # pylint
+  "PT",   # flake8-pytest-style
+  "PTH",  # flake8-use-pathlib
+  "Q",    # flake8-quotes
+  "RET",  # flake8-return
+  "RSE",  # flake8-raise
+  "RUF",  # ruff
+  "S",    # flake8-bandit
+  "SIM",  # flake8-simpify
+  "SLF",  # flake8-self
+  "SLOT", # flake8-slots
+  "T100", # flake8-debugger
+  "TRY",  # tryceratops
+  "UP",   # pyupgrade
+  "W",    # pycodestyle
+  "YTT",  # flake8-2020
+]
+ignore = [
+  "A005",   # allow to shadow stdlib and builtin module names
+  "B904",  # Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+  "COM812", # trailing comma, conflicts with `ruff format`
+  # Different doc rules that we don't really care about:
+  "D100",
+  "D104",
+  "D105", # docstring for magic methods
+  "D106",
+  "D107",
+  "D203",
+  "D212",
+  "D401",
+  "D404",
+  "D405",
+  "ISC001",  # implicit string concat conflicts with `ruff format`
+  "ISC003",  # prefer explicit string concat over implicit concat
+  "PLR09",   # we have our own complexity rules
+  "PLR2004", # do not report magic numbers
+  "PLR6301", # do not require classmethod / staticmethod when self not used
+  "PT011", # pytest.raises({exception}) is too broad, set the match parameter or use a more specific exception
+  "TRY003",  # long exception messages from `tryceratops`
+]
+external = [ "AAA", "WPS" ]
+
+# Plugin configs:
+flake8-import-conventions.banned-from = [ "ast", "datetime" ]
+flake8-import-conventions.aliases = { datetime = "dt" }
+flake8-quotes.inline-quotes = "double"
+mccabe.max-complexity = 6
+pydocstyle.convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"adobe_vipm/flows/pipeline.py" = ["D101", "D102", "RSE102"]
+"tests/*.py" = [
+  "D103", # missing docstring in public function
+  "S101", # asserts
+  "S105", # hardcoded passwords
+  "S404", # subprocess calls are for tests
+  "S603", # do not require `shell=True`
+  "S607", # partial executable paths
+  "SLF001",  # Private member accessed
+]
