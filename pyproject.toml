@@ -250,6 +250,18 @@ ignore = [
 ]
 external = [ "AAA", "WPS" ]
 
+[tool.ruff.lint.per-file-ignores]
+"adobe_vipm/flows/pipeline.py" = ["D101", "D102", "RSE102"]
+"tests/*.py" = [
+  "D103", # missing docstring in public function
+  "S101", # asserts
+  "S105", # hardcoded passwords
+  "S404", # subprocess calls are for tests
+  "S603", # do not require `shell=True`
+  "S607", # partial executable paths
+  "SLF001",  # Private member accessed
+]
+
 [tool.ruff.lint.isort]
 known-third-party = ["swo"]
 
