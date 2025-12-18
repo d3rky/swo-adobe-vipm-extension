@@ -249,3 +249,25 @@ ignore = [
   "TRY003",  # long exception messages from `tryceratops`
 ]
 external = [ "AAA", "WPS" ]
+
+[tool.ruff.lint.isort]
+known-third-party = ["swo"]
+
+[tool.mypy]
+warn_no_return = false
+
+[[tool.mypy.overrides]]
+module = "django.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pyfiglet.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "gunicorn.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pymsteams.*"
+ignore_missing_imports = true
