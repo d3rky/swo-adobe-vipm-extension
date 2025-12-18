@@ -171,11 +171,6 @@ per-file-ignores = [
   "adobe_vipm/utils.py: WPS100 WPS110 WPS114",
   "adobe_vipm/management/commands/sync_3yc_enrol.py: WPS114",
 ]
-flake8-import-conventions.banned-from = [ "ast", "datetime" ]
-flake8-import-conventions.aliases = { datetime = "dt" }
-flake8-quotes.inline-quotes = "double"
-mccabe.max-complexity = 6
-pydocstyle.convention = "google"
 
 [tool.ruff]
 # Ruff config: https://docs.astral.sh/ruff/settings
@@ -254,6 +249,19 @@ ignore = [
   "TRY003",  # long exception messages from `tryceratops`
 ]
 external = [ "AAA", "WPS" ]
+
+[tool.ruff.lint.flake8-import-conventions]
+banned-from = ["ast", "datetime"]
+aliases = { datetime = "dt" }
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "double"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 6
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
 "adobe_vipm/flows/pipeline.py" = ["D101", "D102", "RSE102"]
