@@ -251,6 +251,8 @@ ignore = [
 external = [ "AAA", "WPS" ]
 
 # Plugin configs:
+flake8-import-conventions.aliases = { datetime = "dt" }
+flake8-quotes.inline-quotes = "double"
 mccabe.max-complexity = 6
 pydocstyle.convention = "google"
 
