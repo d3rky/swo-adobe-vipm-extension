@@ -251,7 +251,6 @@ ignore = [
 external = [ "AAA", "WPS" ]
 
 [tool.ruff.lint.flake8-import-conventions]
-banned-from = ["ast", "datetime"]
 aliases = { datetime = "dt" }
 
 [tool.ruff.lint.flake8-quotes]
