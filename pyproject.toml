@@ -251,10 +251,13 @@ ignore = [
 external = [ "AAA", "WPS" ]
 
 # Plugin configs:
-flake8-import-conventions.aliases = { datetime = "dt" }
+[tool.flake8.flake8-import-conventions]
+banned-from = ["ast", "datetime"]
+aliases = { datetime = "dt" }
+
 flake8-quotes.inline-quotes = "double"
 mccabe.max-complexity = 6
-pydocstyle.convention = "google"
+pydocstyle.convention = "google"i
 
 [tool.ruff.lint.per-file-ignores]
 "adobe_vipm/flows/pipeline.py" = ["D101", "D102", "RSE102"]
