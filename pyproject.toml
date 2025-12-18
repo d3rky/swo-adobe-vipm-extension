@@ -249,22 +249,3 @@ ignore = [
   "TRY003",  # long exception messages from `tryceratops`
 ]
 external = [ "AAA", "WPS" ]
-
-# Plugin configs:
-flake8-import-conventions.banned-from = [ "ast", "datetime" ]
-flake8-import-conventions.aliases = { datetime = "dt" }
-flake8-quotes.inline-quotes = "double"
-mccabe.max-complexity = 6
-pydocstyle.convention = "google"
-
-[tool.ruff.lint.per-file-ignores]
-"adobe_vipm/flows/pipeline.py" = ["D101", "D102", "RSE102"]
-"tests/*.py" = [
-  "D103", # missing docstring in public function
-  "S101", # asserts
-  "S105", # hardcoded passwords
-  "S404", # subprocess calls are for tests
-  "S603", # do not require `shell=True`
-  "S607", # partial executable paths
-  "SLF001",  # Private member accessed
-]
